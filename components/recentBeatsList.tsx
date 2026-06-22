@@ -5,11 +5,16 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useColorScheme,
   View,
 } from "react-native";
+import { Colors } from "../constants/theme";
 import { Beat } from "./beatsData";
 
 const RecentBeatsList = ({ onPress }: { onPress: (beat: Beat) => void }) => {
+  const isDark = useColorScheme() === "dark";
+  const themeColors = isDark ? Colors.dark : Colors.light;
+  const styles = getStyles(themeColors);
   const [beats, setBeats] = useState<Beat[]>([]);
 
   const JSON_URL =
@@ -49,47 +54,57 @@ const RecentBeatsList = ({ onPress }: { onPress: (beat: Beat) => void }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "85%",
-  },
+type ThemeColors = typeof Colors.light;
 
-  header: {
-    fontSize: 30,
-    margin: 10,
-  },
+const getStyles = (themeColors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      width: "92%",
+      paddingTop: 10,
+    },
 
-  itemContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
-    backgroundColor: "#fff",
-    marginVertical: 5,
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 10,
-  },
-  itemText: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#333",
-  },
-  itemImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 8,
-  },
-  textContainer: {
-    flex: 1,
-    marginLeft: 12,
-  },
-  priceText: {
-    fontSize: 14,
-    color: "#666",
-    marginTop: 4,
-  },
-});
+    header: {
+      fontSize: 30,
+      margin: 10,
+      color: themeColors.text,
+    },
+
+    itemContainer: {
+      paddingVertical: 14,
+      paddingHorizontal: 18,
+      borderWidth: 1,
+      borderColor: themeColors.icon,
+      backgroundColor: themeColors.background,
+      marginVertical: 6,
+      flexDirection: "row",
+      alignItems: "center",
+      borderRadius: 20,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 6 },
+      shadowOpacity: 0.08,
+      shadowRadius: 18,
+      elevation: 5,
+    },
+    itemText: {
+      fontSize: 16,
+      fontWeight: "600",
+      color: themeColors.text,
+    },
+    itemImage: {
+      width: 54,
+      height: 54,
+      borderRadius: 16,
+    },
+    textContainer: {
+      flex: 1,
+      marginLeft: 14,
+    },
+    priceText: {
+      fontSize: 14,
+      color: themeColors.tint,
+      marginTop: 4,
+    },
+  });
 
 export default RecentBeatsList;

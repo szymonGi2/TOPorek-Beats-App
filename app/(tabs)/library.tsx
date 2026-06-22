@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useColorScheme,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,8 +13,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import BeatModal from "@/components/beatModal";
 import { Beat } from "@/components/beatsData";
 import Searchbar from "@/components/searchBar";
+import { Colors } from "@/constants/theme";
 
 const library = () => {
+  const isDark = useColorScheme() === "dark";
+  const themeColors = isDark ? Colors.dark : Colors.light;
+  const styles = getStyles(themeColors);
+
   const [search, setSearch] = useState("");
   const [selectedBeat, setSelectedBeat] = useState<Beat | null>(null);
 
@@ -68,53 +74,61 @@ const library = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: "auto",
-  },
+type ThemeColors = typeof Colors.light;
 
-  header: {
-    textAlign: "center",
-    fontSize: 30,
-  },
+const getStyles = (themeColors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      marginHorizontal: "auto",
+      backgroundColor: themeColors.background,
+      width: "100%",
+    },
 
-  searchbar: {
-    marginHorizontal: "auto",
-    marginVertical: 10,
-  },
+    header: {
+      textAlign: "center",
+      fontSize: 30,
+      color: themeColors.text,
+      marginTop: 20,
+      marginBottom: 12,
+    },
 
-  itemContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
-    backgroundColor: "#fff",
-    marginVertical: 5,
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 10,
-    width: "100%",
-  },
-  itemText: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#333",
-  },
-  itemImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 8,
-  },
-  textContainer: {
-    flex: 1,
-    marginLeft: 12,
-  },
-  priceText: {
-    fontSize: 14,
-    color: "#666",
-    marginTop: 4,
-  },
-});
+    itemContainer: {
+      paddingVertical: 14,
+      paddingHorizontal: 18,
+      borderWidth: 1,
+      borderColor: themeColors.icon,
+      backgroundColor: themeColors.background,
+      marginVertical: 6,
+      flexDirection: "row",
+      alignItems: "center",
+      borderRadius: 18,
+      width: "100%",
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 8 },
+      shadowOpacity: 0.08,
+      shadowRadius: 16,
+      elevation: 5,
+    },
+    itemText: {
+      fontSize: 16,
+      fontWeight: "600",
+      color: themeColors.text,
+    },
+    itemImage: {
+      width: 52,
+      height: 52,
+      borderRadius: 16,
+    },
+    textContainer: {
+      flex: 1,
+      marginLeft: 14,
+    },
+    priceText: {
+      fontSize: 14,
+      color: themeColors.tint,
+      marginTop: 4,
+    },
+  });
 
 export default library;

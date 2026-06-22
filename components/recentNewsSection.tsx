@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, useColorScheme, View } from "react-native";
+import { Colors } from "../constants/theme";
 import { News } from "./newsData";
 
 const RecentNewsSection = () => {
+  const isDark = useColorScheme() === "dark";
+  const themeColors = isDark ? Colors.dark : Colors.light;
+  const styles = getStyles(themeColors);
 
   const [news, setNews] = useState<News[]>([]);
 
@@ -40,30 +44,42 @@ const RecentNewsSection = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "85%",
-    margin: 20,
-  },
+type ThemeColors = typeof Colors.light;
 
-  header: {
-    fontSize: 20,
-    marginVertical: 20,
-  },
+const getStyles = (themeColors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      width: "92%",
+      margin: 20,
+    },
 
-  imageStyle: {
-    height: 150,
-    width: "100%",
-  },
+    header: {
+      fontSize: 20,
+      marginVertical: 20,
+      color: themeColors.text,
+    },
 
-  articleItem: {
-    width: "100%",
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: 10,
-  },
-});
+    imageStyle: {
+      height: 160,
+      width: "100%",
+      borderRadius: 18,
+      marginBottom: 14,
+      backgroundColor: themeColors.background,
+    },
+
+    articleItem: {
+      width: "100%",
+      backgroundColor: themeColors.background,
+      padding: 16,
+      borderRadius: 22,
+      marginVertical: 10,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 8 },
+      shadowOpacity: 0.06,
+      shadowRadius: 18,
+      elevation: 6,
+    },
+  });
 
 export default RecentNewsSection;
