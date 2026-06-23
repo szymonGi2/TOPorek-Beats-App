@@ -1,6 +1,7 @@
 import BeatModal from "@/components/beatModal";
 import { Beat } from "@/components/beatsData";
 import RecentBeatsList from "@/components/recentBeatsList";
+// import RecentNewsSection from "@/components/recentNewsSection";
 import { Colors } from "@/constants/theme";
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, useColorScheme } from "react-native";
