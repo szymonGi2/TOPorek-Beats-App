@@ -80,8 +80,8 @@ const getStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      width: "92%",
-      alignSelf: "center",
+      width: "100%",
+      paddingHorizontal: "4%",
       backgroundColor: themeColors.background,
       paddingBottom: 20,
     },
