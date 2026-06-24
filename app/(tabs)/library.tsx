@@ -80,17 +80,17 @@ const getStyles = (themeColors: ThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      marginHorizontal: "auto",
+      width: "92%",
+      alignSelf: "center",
       backgroundColor: themeColors.background,
-      width: "100%",
+      paddingBottom: 20,
     },
 
     header: {
       textAlign: "center",
       fontSize: 30,
       color: themeColors.text,
-      marginTop: 20,
-      marginBottom: 12,
+      marginVertical: 10,
     },
 
     itemContainer: {
@@ -102,12 +102,11 @@ const getStyles = (themeColors: ThemeColors) =>
       marginVertical: 6,
       flexDirection: "row",
       alignItems: "center",
-      borderRadius: 18,
-      width: "100%",
+      borderRadius: 20,
       shadowColor: "#000",
-      shadowOffset: { width: 0, height: 8 },
+      shadowOffset: { width: 0, height: 6 },
       shadowOpacity: 0.08,
-      shadowRadius: 16,
+      shadowRadius: 18,
       elevation: 5,
     },
     itemText: {
@@ -116,8 +115,8 @@ const getStyles = (themeColors: ThemeColors) =>
       color: themeColors.text,
     },
     itemImage: {
-      width: 52,
-      height: 52,
+      width: 54,
+      height: 54,
       borderRadius: 16,
     },
     textContainer: {
