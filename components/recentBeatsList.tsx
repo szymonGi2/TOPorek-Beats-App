@@ -18,7 +18,7 @@ const RecentBeatsList = ({ onPress }: { onPress: (beat: Beat) => void }) => {
   const [beats, setBeats] = useState<Beat[]>([]);
 
   const JSON_URL =
-    "https://gist.githubusercontent.com/szymonGi2/3c606ddea6685176d9cb570b2fda4a84/raw/4d8c860040a68f183a3caa2be126744f4e505db1/gistfile1.txt";
+    "https://gist.githubusercontent.com/szymonGi2/3c606ddea6685176d9cb570b2fda4a84/raw/3e257ef93edd08c22100d3ffce336781ae7498b4/gistfile1.txt";
 
   useEffect(() => {
     fetch(JSON_URL)
